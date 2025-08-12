@@ -29,28 +29,30 @@
 
   <!-- Hero Section -->
   <header class="hero">
-    <div class="hero-overlay "></div>
+    <div  class="hero-overlay "></div>
     <div class="hero-content text-center mb-5">
       <h1 class="display-4">AUGURI LUDO</h1>
       <p class="lead">Buon compleanno collega</p>
     </div>
-    <div class="hero-overlay hero-content opacity-75">
+    <div  class="hero-overlay typewriter-text hero-content opacity-75">
       <div class="hero-content p-2">
 
-        <p class="fs-5">Beh, cercavo da giorni un modo tutto mio per farti gli auguri e alla fine ho pensato di farteli
+        <p class="fs-4">Beh, cercavo da giorni un modo tutto mio per farti gli auguri e alla fine ho pensato di farteli
           in una lingua che capiamo bene entrambi.<br> Sarà sicuramente impaginato male e poco responsive, perù ci sono
           riuscito, spero tu abbia apprezzato il pensiero. <br>
         </p>
-        <p class="fs-5">
+        <p class="fs-4">
           Ne abbiamo passate tante insieme, momenti bellissimi che ricorderò per sempre ma anche tanti momenti bui e
           difficili, ci siamo fatti prendere dallo sconforto e alla fine possiamo dire che ce l'abbiamo fatta entrambi,
           anche se con strade diverse.
         </p>
+
+        
       </div>
     </div>
 
   </header>
-  <main class="my-4">
+  <main  class="my-4 typewriter-text">
     <p class="fs-5 my-4">
       Scusami se nell'ultimo periodo sono stato un po assente, troppo offuscato da mille pensieri per accorgermi che
       stavi
@@ -112,13 +114,54 @@
       slidesPerView: 4,
       spaceBetween: 20,
       loop: true,
-      speed: 20000,
+      speed: 22000,
       autoplay: {
         delay: 0,
         disableOnInteraction: false,
       },
       freeMode: false,
     });
+  </script>
+  <script>
+    const elements = document.getElementsByClassName('typewriter-text');
+
+      Array.from(elements).forEach(textElement => {
+        const fullText = textElement.innerHTML;
+        textElement.innerHTML = ''; // svuota per partire da zero
+
+        let i = 0;
+        const speed = 20;
+        let started = false;
+
+        function typeWriter() {
+          if (i < fullText.length) {
+            if (fullText[i] === '<') {
+              const closeTagIndex = fullText.indexOf('>', i);
+              if (closeTagIndex !== -1) {
+                textElement.innerHTML += fullText.slice(i, closeTagIndex + 1);
+                i = closeTagIndex + 1;
+                setTimeout(typeWriter, speed);
+                return;
+              }
+            }
+            textElement.innerHTML += fullText.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+          }
+        }
+
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !started) {
+              started = true;
+              typeWriter();
+              observer.unobserve(textElement);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        observer.observe(textElement);
+      });
   </script>
 </body>
 
