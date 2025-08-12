@@ -43,7 +43,7 @@ body::before {
     position: relative;
     animation: heroZoomIn 1.8s ease-out forwards;
     height: 100vh;
-    background-image: url('/ludo.jpeg');
+    background-image: url('ludo.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
