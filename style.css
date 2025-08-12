@@ -78,13 +78,13 @@ body::before {
     background: linear-gradient(to bottom,
             #0d111789 0%,
             /* colore solido sopra */
-            rgba(13, 17, 23, 0.586) 5%,
+            rgba(13, 17, 23, 0.529) 5%,
             /* fade leggero verso trasparenza */
-            rgba(0, 0, 0, 0.153) 40%,
+            rgba(0, 0, 0, 0.209) 40%,
             /* centro completamente trasparente */
             rgba(0, 0, 0, 0.5) 85%,
             /* ricomincia a scurirsi */
-            #0d1117 100%
+            #0d1117c7 100%
             /* chiusura totale sotto */
         );
     z-index: 2;
